@@ -129,21 +129,19 @@ void omap3_dss_enable(void)
 //modified by haolong 2012/03/13
 	l |= DISPC_ENABLE;
 	writel(l, &dispc->control);
-/*
-	l |= GO_LCD |  GO_DIG; 
-	writel(l, &dispc->control);
-	udelay(1000);
-	writel(l, &dispc->control);
-        udelay(1000);
-	writel(l, &dispc->control);
-        udelay(1000);
-	l = readl(&dispc->control);
-	l |= LCD_ENABLE | DIG_ENABLE | GP_OUT0 | GP_OUT1;
-	writel(l, &dispc->control);
-        udelay(1000);
-	writel(l, &dispc->control);
-        udelay(1000);
-	writel(l, &dispc->control);
-        udelay(1000);
-*/
+//	l |= GO_LCD |  GO_DIG; 
+//	writel(l, &dispc->control);
+//	udelay(1000);
+//	writel(l, &dispc->control);
+//        udelay(1000);
+//	writel(l, &dispc->control);
+//        udelay(1000);
+//	l = readl(&dispc->control);
+//	l |= LCD_ENABLE | DIG_ENABLE | GP_OUT0 | GP_OUT1;
+//	writel(l, &dispc->control);
+//        udelay(1000);
+//	writel(l, &dispc->control);
+//        udelay(1000);
+//	writel(l, &dispc->control);
+//        udelay(1000);
 }

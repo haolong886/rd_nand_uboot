@@ -154,7 +154,7 @@ void dss_init(void)
  *		GPIO173, GPIO172, GPIO171: 0 0 0 => xM
  */
 
-
+#if 0
 int get_board_revision(void)
 {
 	int revision;
@@ -181,7 +181,16 @@ int get_board_revision(void)
 
 	return revision;
 }
+#else
+//added by haolong for Setting VAUX2 to 1.8V for EHCI PHY
+#define UESTC_RD_REV1	0x8	
+//-----------------------------------------------
 
+int get_board_revision(void)
+{
+	return UESTC_RD_REV1;
+}
+#endif
 /*
  * Routine: get_expansion_id
  * Description: This function checks for expansion board by checking I2C
@@ -241,6 +250,7 @@ void beagle_display_init(void)
 		twl4030_i2c_write_u8(TWL4030_CHIP_GPIO, val,
                              TWL4030_BASEADD_GPIO + 0xc);
 //-----------------------------------------------------------
+		printf("****this is dvid cfg xm******\n");
 		omap3_dss_panel_config(&dvid_cfg_xm);
 		break;
 	}
@@ -255,9 +265,6 @@ void beagle_display_init(void)
  * Description: Configure board specific parts
  */
  
-//added by haolong for Setting VAUX2 to 1.8V for EHCI PHY
-#define UESTC_RD_REV1	0x8	
-//-----------------------------------------------
 
 int misc_init_r(void)
 {
@@ -267,12 +274,7 @@ int misc_init_r(void)
 
 	/* Enable i2c2 pullup resisters */
 	writel(~(PRG_I2C2_PULLUPRESX), &prog_io_base->io1);
-//modified by haolong to force detected by UESTC_RD_REV1
-#if 0
 	switch (get_board_revision()) {
-#else
-	switch (UESTC_RD_REV1) {
-#endif
 //------------------------------------------------
 //added by haolong for Setting VAUX2 to 1.8V for EHCI PHY
 	case UESTC_RD_REV1:
