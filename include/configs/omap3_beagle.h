@@ -178,7 +178,9 @@
 #ifdef CONFIG_CMD_NAND
 #define CONFIG_CMD_NAND_YAFFS
 #define CONFIG_CMD_NAND_LOCK_UNLOCK
+//modified by haolong, this macro will overwrite CONFIG_ENV_OFFSET, 2012/07/25
 //#define CONFIG_ENV_OFFSET_OOB
+//-----------------------------------------------------------------
 #endif
 //--------------------------
 #define CONFIG_CMD_LED		/* LED support			*/
