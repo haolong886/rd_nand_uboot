@@ -64,6 +64,9 @@ COBJS-$(CONFIG_ENV_IS_NOWHERE) += env_nowhere.o
 # command
 #modified by haolong 2012/03/08
 COBJS-$(CONFIG_CMD_MENU) += cmd_menu.o
+#added by haolong to test lcd backlight 2012/08/13
+COBJS-$(CONFIG_CMD_BACKLIGHT) += cmd_backlight.o
+#-----------------------------------------------
 
 
 COBJS-$(CONFIG_CMD_AMBAPP) += cmd_ambapp.o

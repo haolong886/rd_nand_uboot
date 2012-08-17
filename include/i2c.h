@@ -154,6 +154,12 @@ int i2c_probe(uchar chip);
  */
 int i2c_read(uchar chip, uint addr, int alen, uchar *buffer, int len);
 int i2c_write(uchar chip, uint addr, int alen, uchar *buffer, int len);
+//added by haolong to light lcd backlight--------------------------
+#ifdef CONFIG_OMAP3_RADAR
+int i2c_read_standard_byte(u8 devaddr, u8 *value);
+int i2c_write_standard_byte(uchar chip, uchar buffer);
+#endif
+//---------------------------------------------------------
 
 /*
  * Utility routines to read/write registers.

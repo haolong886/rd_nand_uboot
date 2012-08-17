@@ -37,7 +37,8 @@
 #define CONFIG_OMAP34XX		1	/* which is a 34XX */
 #define CONFIG_OMAP3430		1	/* which is in a 3430 */
 #define CONFIG_OMAP3_BEAGLE	1	/* working with BEAGLE */
-
+//added by haolong to use 
+#define CONFIG_OMAP3_RADAR  1   /* working with rd_board*/
 #define CONFIG_SDRC	/* The chip has SDRC controller */
 
 #include <asm/arch/cpu.h>		/* get chip and board defs */
@@ -157,6 +158,8 @@
 /********************************************/
 /*modified by haolong 2012/03/08*/
 #define CONFIG_CMD_MENU
+/*added by haolong to test lcd backlight 2012/08/13*/
+#define CONFIG_CMD_BACKLIGHT
 //----------------------------
 
 #define CONFIG_CMD_CACHE

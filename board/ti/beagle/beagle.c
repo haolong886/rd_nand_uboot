@@ -63,6 +63,12 @@ extern volatile struct ehci_hcor *hcor;
 #define EXPANSION_EEPROM_I2C_BUS	1
 #define EXPANSION_EEPROM_I2C_ADDRESS	0x50
 
+//added by haolong to light lcd backlight, 2012/08/12
+#define BACKLIGHT_BUS				2
+#define BACKLIGHT_ADDR				0x0d
+#define BACKLIGHT_LEVEL				(0xff << 4)
+//----------------------------------
+
 #define TINCANTOOLS_ZIPPY		0x01000100
 #define TINCANTOOLS_ZIPPY2		0x02000100
 #define TINCANTOOLS_TRAINER		0x04000100
@@ -215,7 +221,21 @@ unsigned int get_expansion_id(void)
 
 	return expansion_config.device_vendor;
 }
-
+//added by haolong to light up backlight 2012/08/12
+unsigned int backlight(void)
+{
+	u8 read_data=0;
+	u16 level = 4080; //0xff
+	i2c_set_bus_num(BACKLIGHT_BUS);
+//	i2c_read_standard_byte(BACKLIGHT_ADDR, &read_data);
+//	printf("read from i2c = %d\n", read_data);
+	i2c_write_standard_byte(BACKLIGHT_ADDR, &level);
+//	i2c_write(BACKLIGHT_ADDR, 0x0f, 1, 0xf0, 1);
+//	i2c_read_standard_byte(BACKLIGHT_ADDR, &read_data);
+//	printf("read from i2c = %d\n", read_data);
+	i2c_set_bus_num(TWL4030_I2C_BUS);
+}
+//------------------------------------------
 /*
  * Configure DSS to display background color on DVID
  * Configure VENC to display color bar on S-Video
@@ -252,6 +272,11 @@ void beagle_display_init(void)
 //-----------------------------------------------------------
 		printf("****this is dvid cfg xm******\n");
 		omap3_dss_panel_config(&dvid_cfg_xm);
+		//added by haolong to light up backlight 2012/08/12
+		printf("backlight up\n");
+		if(backlight() < 0)
+			printf("backlight error\n");
+		//---------------------------------------
 		break;
 	}
 

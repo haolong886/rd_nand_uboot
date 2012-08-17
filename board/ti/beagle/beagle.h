@@ -450,7 +450,9 @@ const omap3_sysinfo sysinfo = {
 	MUX_VAL(CP(SYS_BOOT3),		(IDIS | PTD | DIS | M0)) /*DSS_DATA20*/\
 	MUX_VAL(CP(SYS_BOOT4),		(IDIS | PTD | DIS | M0)) /*DSS_DATA21*/\
 	MUX_VAL(CP(SYS_BOOT5),		(IDIS | PTD | DIS | M0)) /*DSS_DATA22*/\
-	MUX_VAL(CP(SYS_BOOT6),		(IDIS | PTD | DIS | M0)) /*DSS_DATA23*/
+	MUX_VAL(CP(SYS_BOOT6),		(IDIS | PTD | DIS | M0)) /*DSS_DATA23*/\
+	MUX_VAL(CP(I2C3_SCL),		(IEN  | PTU | EN  | M0)) /*I2C3_SCL*/\
+	MUX_VAL(CP(I2C3_SDA),		(IEN  | PTU | EN  | M0)) /*I2C3_SDA*/
 
 #endif
 //-------------------------------------------------------------------------
