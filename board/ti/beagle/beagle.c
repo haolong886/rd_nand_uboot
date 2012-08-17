@@ -458,13 +458,26 @@ int misc_init_r(void)
 	/* Set GPIO states before they are made outputs */
 	writel(GPIO23 | GPIO10 | GPIO8 | GPIO2 | GPIO1,
 		&gpio6_base->setdataout);
+	//modified by haolong to control lcd power(gpio 129), 2012/08/17
+#if 0
 	writel(GPIO31 | GPIO30 | GPIO29 | GPIO28 | GPIO22 | GPIO21 |
 		GPIO15 | GPIO14 | GPIO13 | GPIO12, &gpio5_base->setdataout);
-
+#else 
+	writel(GPIO31 | GPIO30 | GPIO29 | GPIO28 | GPIO22 | GPIO21 |
+		GPIO15 | GPIO14 | GPIO13 | GPIO12 | GPIO1, &gpio5_base->setdataout);
+#endif
+	//--------------------------------------------------------
 	/* Configure GPIOs to output */
 	writel(~(GPIO23 | GPIO10 | GPIO8 | GPIO2 | GPIO1), &gpio6_base->oe);
+	//modified by haolong to control lcd power(gpio 129), 2012/08/17
+#if 0
 	writel(~(GPIO31 | GPIO30 | GPIO29 | GPIO28 | GPIO22 | GPIO21 |
 		GPIO15 | GPIO14 | GPIO13 | GPIO12), &gpio5_base->oe);
+#else
+	writel(~(GPIO31 | GPIO30 | GPIO29 | GPIO28 | GPIO22 | GPIO21 |
+		GPIO15 | GPIO14 | GPIO13 | GPIO12 | GPIO1), &gpio5_base->oe);
+#endif
+	//-----------------------------------------------------
 /*****************************11.12.26 modified by haolong***************************************/
 //	dieid_num_r();
 	beagle_display_init();
