@@ -270,7 +270,6 @@ void beagle_display_init(void)
 		twl4030_i2c_write_u8(TWL4030_CHIP_GPIO, val,
                              TWL4030_BASEADD_GPIO + 0xc);
 //-----------------------------------------------------------
-		printf("****this is dvid cfg xm******\n");
 		omap3_dss_panel_config(&dvid_cfg_xm);
 		//added by haolong to light up backlight 2012/08/12
 		printf("backlight up\n");
