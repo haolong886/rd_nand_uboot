@@ -375,6 +375,7 @@ write_exit:
 	return i2c_error;
 }
 
+//added by haolong to light up LCD backlight, 2012/08/20-----------------------
 //cant be use
 int i2c_read_standard_byte(u8 devaddr, u8 *value)
 {
@@ -458,8 +459,6 @@ int i2c_write_standard_byte(uchar chip, uchar *buffer)
 	u16 status;
 	int i2c_error = 0;
 	u16 con=0;
-	u8 aa[2] = {15, 240};
-
 
 	/* wait until bus not busy */
 	wait_for_bb();
@@ -467,9 +466,6 @@ int i2c_write_standard_byte(uchar chip, uchar *buffer)
 	/* start address phase - will write regoffset + len bytes data */
 	/* TODO consider case when !CONFIG_OMAP243X/34XX/44XX */
 	writew(2, &i2c_base->cnt);
-	/*reset FIFO*/
-//	status = readw(&i2c_base->buf);
-//	writew(status | (1<<14) | (1<<6), &i2c_base->buf);
 	/* set slave address */
 	writew(chip, &i2c_base->sa);
 	/* stop bit needed here */
@@ -488,9 +484,7 @@ int i2c_write_standard_byte(uchar chip, uchar *buffer)
 			goto write_exit;
 		}
 		if (status & I2C_STAT_XRDY) {
-//			printf("buffer[%d]=%x\n", i, buffer[i]);
-			writeb(aa[i], &i2c_base->data);
-//			writeb(buffer[i], &i2c_base->data);
+			writeb(buffer[i], &i2c_base->data);
 			writew(I2C_STAT_XRDY, &i2c_base->stat);
 		} else {
 			i2c_error = 1;
@@ -504,7 +498,7 @@ write_exit:
 	writew(0xFFFF, &i2c_base->stat);
 	return i2c_error;
 }
-
+//-----------------------------------------------------------------------------------------
 static void wait_for_bb(void)
 {
 	int timeout = I2C_TIMEOUT;

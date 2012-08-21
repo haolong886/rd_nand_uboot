@@ -99,8 +99,8 @@ int nand_erase_opts(nand_info_t *meminfo, const nand_erase_options_t *opts)
 	erase.len  = meminfo->erasesize;
 	erase.addr = opts->offset;
 //added by haolong to fix saveenv 2012/07/25
-	printk("!!!!!erase.addr = %x!!!!!\n", erase.addr);
-	printk("!!!!!opts->offset = %x!!!!!\n", opts->offset);
+//	printk("!!!!!erase.addr = %x!!!!!\n", erase.addr);
+//	printk("!!!!!opts->offset = %x!!!!!\n", opts->offset);
 //-------------------------------------
 	erase_length = lldiv(opts->length + meminfo->erasesize - 1,
 			     meminfo->erasesize);

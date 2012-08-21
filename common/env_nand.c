@@ -246,9 +246,6 @@ int saveenv(void)
 	ssize_t	len;
 	char	*res;
 	nand_erase_options_t nand_erase_options;
-//added by haolong to debug saveenv 2012/07/25
-	printk("------here is saveenv\n------");
-//----------------------------------------
 	memset(&nand_erase_options, 0, sizeof(nand_erase_options));
 	nand_erase_options.length = CONFIG_ENV_RANGE;
 	nand_erase_options.offset = CONFIG_ENV_OFFSET;
@@ -264,13 +261,6 @@ int saveenv(void)
 	}
 	env_new.crc   = crc32(0, env_new.data, ENV_SIZE);
 	
-//added by haolong to debug saveenv 2012/07/25
-	printk("CONFIG_ENV_IS_IN_NAND = %d\n", CONFIG_ENV_IS_IN_NAND);
-	printk("------here is saveenv, offset = %x\n------", nand_erase_options.offset);
-	unsigned int i = CONFIG_ENV_OFFSET;
-	printk("CONFIG_ENV_OFFSET = %x\n", CONFIG_ENV_OFFSET);
-	printk("CONFIG_ENV_OFFSET i = %x\n", i);
-//----------------------------------------
 	puts("Erasing Nand...\n");
 	if (nand_erase_opts(&nand_info[0], &nand_erase_options))
 		return 1;
